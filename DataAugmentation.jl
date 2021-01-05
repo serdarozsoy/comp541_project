@@ -37,3 +37,20 @@ function random_contrast(image, lower, upper)
     f_image = (image .- mean_f)*r_cont .+ mean_f
     return f_image
 end
+
+
+"""
+Random brightness within given max_delta
+"""
+function random_brightness(image, max_delta)
+    if max_delta < 0
+        raise("max_delta must be non-negative.")
+    else
+        r_bright = rand(-max_delta:0.00001:max_delta)
+        #b_image =  permutedims(channelview(image), (2, 3, 1)) .+ r_bright
+        b_image =  image .+ r_bright
+    end
+    return b_image
+end
+
+
